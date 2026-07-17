@@ -1,0 +1,665 @@
+<!-- ======================================================== -->
+    <!-- 2. LOGIN MODAL / PORTAL GATE                             -->
+    <!-- ======================================================== -->
+    <div class="login-modal-overlay" id="login-modal">
+        <div class="login-card-container">
+            <button class="login-close-btn" id="login-close-btn">&times;</button>
+            <div class="login-brand-header">
+                <div class="crm-logo-box">
+                    <i class="fa-solid fa-house-chimney-window crm-logo-icon"></i>
+                </div>
+                <div class="crm-brand-titles">
+                    <h2>Fathers House</h2>
+                    <p>Church Management System</p>
+                </div>
+            </div>
+
+            <div class="login-body">
+                <h3>Welcome</h3>
+                <p class="login-subtitle">Sign in or create an account to continue.</p>
+
+                <!-- Tab Toggle -->
+                <div class="login-tabs">
+                    <button class="login-tab active" id="tab-signin-btn">Sign in</button>
+                    <button class="login-tab" id="tab-signup-btn">Sign up</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <form id="signin-form" class="active-form">
+                    <div class="form-group-crm">
+                        <label for="signin-email">Email</label>
+                        <input type="email" id="signin-email" required placeholder="admin@fathershouse.com" value="admin@fathershouse.com">
+                    </div>
+                    <div class="form-group-crm">
+                        <label for="signin-password">Password</label>
+                        <input type="password" id="signin-password" required placeholder="••••••••" value="admin">
+                    </div>
+                    <button type="submit" class="btn-crm-submit">Sign in</button>
+                </form>
+
+                <!-- Sign Up Form (hidden by default) -->
+                <form id="signup-form">
+                    <div class="form-group-crm">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="John Doe">
+                    </div>
+                    <div class="form-group-crm">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group-crm">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-crm-submit">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 3. CHURCH MANAGEMENT SYSTEM (CRM) VIEW                    -->
+    <!-- ======================================================== -->
+    <div id="crm-portal-view" style="display: none;">
+        <!-- CRM Header Navigation -->
+        <header class="crm-header">
+            <div class="crm-nav-container">
+                <div class="crm-header-brand">
+                    <div class="crm-header-logo">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                    </div>
+                    <div>
+                        <h2>Fathers House</h2>
+                        <p>Church Management System</p>
+                    </div>
+                </div>
+
+                <!-- Nav Tabs -->
+                <nav class="crm-tabs-navigation">
+                    <button class="crm-nav-tab active" data-tab="dashboard">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </button>
+                    <button class="crm-nav-tab" data-tab="members">
+                        <i class="fa-solid fa-users"></i> Members
+                    </button>
+                    <button class="crm-nav-tab" data-tab="attendance">
+                        <i class="fa-regular fa-calendar-check"></i> Attendance
+                    </button>
+                    <button class="crm-nav-tab" data-tab="finance">
+                        <i class="fa-solid fa-coins"></i> Finance
+                    </button>
+                    <button class="crm-nav-tab" data-tab="events-admin">
+                        <i class="fa-regular fa-calendar"></i> Events
+                    </button>
+                    <button class="crm-nav-tab" data-tab="care">
+                        <i class="fa-solid fa-hand-holding-heart"></i> Pastoral Care
+                    </button>
+                </nav>
+
+                <div class="crm-user-profile">
+                    <span class="user-name">Staff Admin</span>
+                    <button class="btn-logout" id="crm-logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- CRM Dashboard Main Panel -->
+        <main class="crm-main-content">
+            <div class="container">
+
+                <!-- 3a. DASHBOARD TAB VIEW -->
+                <div class="crm-tab-panel active" id="panel-dashboard">
+                    <!-- Stats Grid -->
+                    <div class="crm-stats-grid">
+                        <div class="crm-stat-card">
+                            <div class="stat-icon-box blue-stat"><i class="fa-solid fa-users"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-title">Total Members</span>
+                                <h3 id="stat-total-members">3</h3>
+                            </div>
+                        </div>
+                        <div class="crm-stat-card">
+                            <div class="stat-icon-box green-stat"><i class="fa-regular fa-circle-check"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-title">Attendance Rate</span>
+                                <h3 id="stat-attendance-rate">67%</h3>
+                            </div>
+                        </div>
+                        <div class="crm-stat-card">
+                            <div class="stat-icon-box gold-stat"><i class="fa-solid fa-coins"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-title">Offerings (Weekly)</span>
+                                <h3 id="stat-total-donations">R 400</h3>
+                            </div>
+                        </div>
+                        <div class="crm-stat-card">
+                            <div class="stat-icon-box purple-stat"><i class="fa-regular fa-calendar"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-title">Upcoming Events</span>
+                                <h3 id="stat-total-events">3</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Widgets -->
+                    <div class="crm-dashboard-row">
+                        <!-- Recent Donations Widget (Image 4) -->
+                        <div class="crm-widget-card" id="widget-donations">
+                            <div class="widget-header">
+                                <h3>Recent donations</h3>
+                            </div>
+                            <div class="widget-body">
+                                <div class="donations-list-box" id="recent-donations-list">
+                                    <!-- Populated dynamically -->
+                                    <!-- Match list items: Khumbelo Mbedzi Tithe R 150 -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Grid Panel (Image 4 bottom buttons) -->
+                        <div class="crm-actions-panel">
+                            <h3>Quick Administration Actions</h3>
+                            <p>Select an option below to quickly execute church administrative functions.</p>
+                            <div class="action-grid-buttons">
+                                <button class="action-panel-btn" id="quick-add-member">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <span>Add member</span>
+                                </button>
+                                <button class="action-panel-btn" id="quick-check-in">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                    <span>Check in</span>
+                                </button>
+                                <button class="action-panel-btn" id="quick-log-donation">
+                                    <i class="fa-solid fa-money-bill-transfer"></i>
+                                    <span>Log donation</span>
+                                </button>
+                                <button class="action-panel-btn" id="quick-create-event">
+                                    <i class="fa-solid fa-calendar-plus"></i>
+                                    <span>Create event</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Dashboard Widgets Row for Sendifai Features -->
+                    <div class="crm-widgets-container-full">
+                        <!-- At-Risk Contacts Tracker -->
+                        <div class="crm-widget-card-alt" id="widget-at-risk">
+                            <div class="widget-header">
+                                <h3>"At-Risk" Contacts Tracker</h3>
+                                <span class="badge-num" style="background:#fee2e2; color:#ef4444; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;" id="at-risk-count">0</span>
+                            </div>
+                            <div class="widget-body">
+                                <div class="at-risk-list" id="at-risk-list-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Reminders -->
+                        <div class="crm-widget-card-alt" id="widget-reminders">
+                            <div class="widget-header">
+                                <h3>Upcoming Reminders</h3>
+                                <div style="display:flex; align-items:center; gap:12px;">
+                                    <div class="days-filter-tabs">
+                                        <button class="filter-tab active" data-days="7">7d</button>
+                                        <button class="filter-tab" data-days="14">14d</button>
+                                        <button class="filter-tab" data-days="30">30d</button>
+                                    </div>
+                                    <button class="btn-bulk-send" id="btn-bulk-send-reminders">
+                                        <i class="fa-regular fa-paper-plane"></i> Bulk Send
+                                    </button>
+                                    <!-- Bulk Send Channel Modal -->
+                                    <div class="bulk-send-modal" id="bulk-send-modal" role="dialog" aria-modal="true" style="display:none;">
+                                        <div class="bulk-send-backdrop" id="bulk-send-backdrop"></div>
+                                        <div class="bulk-send-card">
+                                            <div class="bulk-send-header">
+                                                <div class="bulk-send-title">
+                                                    <i class="fa-regular fa-paper-plane"></i>
+                                                    <div>
+                                                        <h4>Bulk Send Reminders</h4>
+                                                        <p id="bulk-send-subtitle">0 recipients in next <span id="bulk-days-label">7</span> days</p>
+                                                    </div>
+                                                </div>
+                                                <button class="bulk-send-close" id="bulk-send-close" aria-label="Close">&times;</button>
+                                            </div>
+                                            <!-- Channel Selector -->
+                                            <div class="bulk-channel-tabs">
+                                                <button class="bulk-ch-tab active" data-channel="email" id="tab-email">
+                                                    <i class="fa-regular fa-envelope"></i> Email
+                                                </button>
+                                                <button class="bulk-ch-tab" data-channel="sms" id="tab-sms">
+                                                    <i class="fa-solid fa-mobile-screen-button"></i> SMS
+                                                </button>
+                                                <button class="bulk-ch-tab" data-channel="whatsapp" id="tab-whatsapp">
+                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                                                </button>
+                                                <button class="bulk-ch-tab" data-channel="both" id="tab-both">
+                                                    <i class="fa-solid fa-layer-group"></i> Both
+                                                </button>
+                                            </div>
+                                            <!-- Message Composer -->
+                                            <div class="bulk-compose-area">
+                                                <label class="bulk-label">Message Preview <span class="bulk-channel-indicator" id="bulk-channel-label">via Email</span></label>
+                                                <textarea id="bulk-message-textarea" rows="4" class="bulk-textarea" placeholder="Type your personalized message here..."></textarea>
+                                                <p class="bulk-hint"><i class="fa-solid fa-circle-info"></i> Use <code>{name}</code> to insert member name, <code>{event}</code> for event type.</p>
+                                            </div>
+                                            <!-- Recipients Preview -->
+                                            <div class="bulk-recipients-preview">
+                                                <label class="bulk-label">Recipients</label>
+                                                <div id="bulk-recipients-list" class="bulk-recipients-list"></div>
+                                            </div>
+                                            <!-- Send Button -->
+                                            <div class="bulk-send-footer">
+                                                <button class="btn btn-primary" id="btn-confirm-bulk-send"><i class="fa-regular fa-paper-plane"></i> Send Now</button>
+                                                <button class="btn btn-secondary" id="btn-cancel-bulk-send">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="reminders-list" id="reminders-list-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3b. MEMBERS TAB VIEW (Image 5) -->
+                <div class="crm-tab-panel" id="panel-members">
+                    <div class="panel-header-row">
+                        <div class="search-filter-box">
+                            <div class="crm-search-wrapper">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                <input type="text" id="member-search-input" placeholder="Search members...">
+                            </div>
+                            <button class="btn-filter-icon" aria-label="Filter"><i class="fa-solid fa-sliders"></i></button>
+                        </div>
+                        <button class="btn btn-primary" id="open-add-member-modal-btn"><i class="fa-solid fa-user-plus"></i> Add New Member</button>
+                    </div>
+
+                    <div class="crm-members-list-card">
+                        <div class="members-list-container" id="members-list-target">
+                            <!-- Populated dynamically -->
+                            <!-- Matching items: Khumbelo Mbedzi (ID: 1001 • Active, phone, nduvheni.mbedzi@gmail.com) [Edit] -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3c. ATTENDANCE TAB VIEW (Image 3) -->
+                <div class="crm-tab-panel" id="panel-attendance">
+                    <div class="attendance-card-box">
+                        <div class="attendance-title-row">
+                            <h3 id="attendance-service-title">Sunday Morning Service • 7 Jun 2026</h3>
+                            <span class="active-badge"><i class="fa-solid fa-circle"></i> Tracking Live</span>
+                        </div>
+
+                        <div class="attendance-list" id="attendance-list-target">
+                            <!-- Populated dynamically -->
+                            <!-- Matching items: Khumbelo Mbedzi ID: 1001 checkbox present/absent -->
+                        </div>
+
+                        <div class="attendance-actions-footer">
+                            <button class="btn btn-secondary btn-sheets-sync" id="sync-sheets-btn">
+                                <i class="fa-solid fa-cloud-arrow-up"></i> Sync to Google Sheets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3d. FINANCE TAB VIEW -->
+                <div class="crm-tab-panel" id="panel-finance">
+                    <div class="finance-layout-grid">
+                        
+                        <!-- Report Widget (Image 1) -->
+                        <div class="report-generator-card">
+                            <h3>Generate new report</h3>
+                            <form id="report-generator-form">
+                                <div class="form-group-crm">
+                                    <label for="report-type">Report type</label>
+                                    <select id="report-type">
+                                        <option value="financial">Financial summary</option>
+                                        <option value="attendance">Attendance report</option>
+                                        <option value="directory">Member directory summary</option>
+                                    </select>
+                                </div>
+                                <div class="date-fields-row">
+                                    <div class="form-group-crm">
+                                        <label for="report-start-date">Start date</label>
+                                        <input type="date" id="report-start-date" required>
+                                    </div>
+                                    <div class="form-group-crm">
+                                        <label for="report-end-date">End date</label>
+                                        <input type="date" id="report-end-date" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-generate-report">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate report
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Donations Ledger -->
+                        <div class="finance-ledger-card">
+                            <h3>Financial Donations Ledger</h3>
+                            <div class="table-wrapper">
+                                <table class="crm-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Member</th>
+                                            <th>Category</th>
+                                            <th>Date</th>
+                                            <th>Amount (ZAR)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="finance-table-body">
+                                        <!-- Dynamically populated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Custom Visual Chart Widget -->
+                        <div class="finance-chart-card">
+                            <h3>Allocation Distributions</h3>
+                            <div class="chart-visual-box" id="finance-chart-target">
+                                <!-- Dynamic SVG bar chart will be drawn here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3e. EVENTS TAB VIEW (CRM Admin) -->
+                <div class="crm-tab-panel" id="panel-events-admin">
+                    <div class="panel-header-row">
+                        <h3>Church Events Scheduler</h3>
+                        <button class="btn btn-primary" id="open-add-event-modal-btn"><i class="fa-solid fa-calendar-plus"></i> Create New Event</button>
+                    </div>
+
+                    <div class="crm-events-list-card">
+                        <div class="table-wrapper">
+                            <table class="crm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Event Title</th>
+                                        <th>Category</th>
+                                        <th>Time</th>
+                                        <th>Location</th>
+                                        <th>Registrations</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="events-table-body">
+                                    <!-- Dynamically populated -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Event Registrations Viewer Panel -->
+                    <div class="event-registrations-panel" id="event-registrations-panel" style="display:none;">
+                        <div class="event-reg-panel-header">
+                            <div>
+                                <h4><i class="fa-solid fa-users"></i> Registrations for: <span id="reg-panel-event-title">-</span></h4>
+                                <p id="reg-panel-count" style="font-size:0.8rem; color:var(--color-text-muted); margin-top:2px;">0 registrations</p>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:center;">
+                                <button class="btn btn-secondary" id="btn-export-registrations" style="font-size:0.8rem; padding:6px 14px;">
+                                    <i class="fa-solid fa-file-csv"></i> Export to Spreadsheet
+                                </button>
+                                <button class="btn btn-secondary" id="btn-close-reg-panel" style="font-size:0.8rem; padding:6px 12px; color:#64748b;">
+                                    <i class="fa-solid fa-xmark"></i> Close
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper" style="margin-top:12px;">
+                            <table class="crm-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Attendees</th>
+                                        <th>Registered At</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="event-registrations-table-body">
+                                    <!-- Dynamically populated -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3f. PASTORAL CARE TAB VIEW (Sendifai ChMS Dashboard) -->
+                <div class="crm-tab-panel" id="panel-care">
+                    <div class="pastoral-grid-layout">
+                        <!-- Left: AI Copilot Intake Approval Queue -->
+                        <div class="crm-widget-card-alt">
+                            <div class="widget-header">
+                                <h3>AI Copilot Intake Approval Queue</h3>
+                                <span class="badge-num" style="background:var(--color-primary-light); color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;" id="care-queue-count">0</span>
+                            </div>
+                            <div class="widget-body">
+                                <div class="ai-queue-list" id="care-queue-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Active Care Sequences Timelines -->
+                        <div class="crm-widget-card-alt">
+                            <div class="widget-header">
+                                <h3>Follow-up Cadence Timelines</h3>
+                            </div>
+                            <div class="widget-body">
+                                <div class="timeline-list" id="care-timelines-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Left: Household Mapping -->
+                        <div class="crm-widget-card-alt pastoral-grid-full">
+                            <div class="widget-header">
+                                <h3>Household Mapping</h3>
+                                <button class="btn-bulk-send" id="btn-create-household" style="padding:6px 12px; font-size:0.8rem;">
+                                    <i class="fa-solid fa-plus"></i> Create Household
+                                </button>
+                            </div>
+                            <div class="widget-body">
+                                <div class="households-flex" id="care-households-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Right: Care Roles Assignment Matrix & Ministries -->
+                        <div class="crm-widget-card-alt">
+                            <div class="widget-header">
+                                <h3>Care Roles Assignment Matrix</h3>
+                            </div>
+                            <div class="widget-body">
+                                <div class="care-team-matrix" id="care-matrix-target">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ministries small groups overview -->
+                        <div class="crm-widget-card-alt">
+                            <div class="widget-header">
+                                <h3>Ministries & Groups Overview</h3>
+                            </div>
+                            <div class="widget-body">
+                                <div class="ministries-crm-grid">
+                                    <div class="ministry-crm-card">
+                                        <div class="ministry-crm-icon"><i class="fa-solid fa-wine-glass"></i></div>
+                                        <div class="ministry-crm-details">
+                                            <h5>Communion Service</h5>
+                                            <p>Small Group • 24 members</p>
+                                        </div>
+                                    </div>
+                                    <div class="ministry-crm-card">
+                                        <div class="ministry-crm-icon" style="color:#8b5cf6;"><i class="fa-solid fa-microphone"></i></div>
+                                        <div class="ministry-crm-details">
+                                            <h5>Audio/Visual Team</h5>
+                                            <p>Volunteer Network • 8 active</p>
+                                        </div>
+                                    </div>
+                                    <div class="ministry-crm-card">
+                                        <div class="ministry-crm-icon" style="color:#10b981;"><i class="fa-solid fa-hands-helping"></i></div>
+                                        <div class="ministry-crm-details">
+                                            <h5>Hospitality Group</h5>
+                                            <p>Volunteer Network • 12 active</p>
+                                        </div>
+                                    </div>
+                                    <div class="ministry-crm-card">
+                                        <div class="ministry-crm-icon" style="color:#f59e0b;"><i class="fa-solid fa-child"></i></div>
+                                        <div class="ministry-crm-details">
+                                            <h5>Kids Ministry</h5>
+                                            <p>Volunteer Network • 15 active</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 4. MODALS (CRM POPUPS)                                   -->
+    <!-- ======================================================== -->
+    
+    <!-- 4a. ADD/EDIT MEMBER MODAL -->
+    <div class="modal-overlay-crm" id="member-modal">
+        <div class="modal-card-crm">
+            <button class="modal-close-crm" id="member-modal-close">&times;</button>
+            <h3 id="member-modal-title">Add New Member</h3>
+            <form id="member-form">
+                <input type="hidden" id="edit-member-index" value="">
+                <div class="form-group-crm">
+                    <label for="member-name">Full Name</label>
+                    <input type="text" id="member-name" required placeholder="Khumbelo Mbedzi">
+                </div>
+                <div class="form-group-crm">
+                    <label for="member-status">Membership Status</label>
+                    <select id="member-status">
+                        <option value="Active">Active Member</option>
+                        <option value="Visitor">Visitor</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group-crm">
+                    <label for="member-phone">Phone Number</label>
+                    <input type="text" id="member-phone" required placeholder="e.g. 0649729516">
+                </div>
+                <div class="form-group-crm">
+                    <label for="member-email">Email Address</label>
+                    <input type="email" id="member-email" required placeholder="name@example.com">
+                </div>
+                <button type="submit" class="btn-crm-submit" id="member-form-submit-btn">Save Member</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4b. LOG DONATION MODAL -->
+    <div class="modal-overlay-crm" id="donation-modal">
+        <div class="modal-card-crm">
+            <button class="modal-close-crm" id="donation-modal-close">&times;</button>
+            <h3>Log New Donation</h3>
+            <form id="donation-form">
+                <div class="form-group-crm">
+                    <label for="donation-member">Select Member</label>
+                    <select id="donation-member" required>
+                        <!-- Populated dynamically from current members -->
+                    </select>
+                </div>
+                <div class="form-group-crm">
+                    <label for="donation-category">Giving Category</label>
+                    <select id="donation-category">
+                        <option value="Tithe">Tithe</option>
+                        <option value="Missions">Missions</option>
+                        <option value="Building">Building</option>
+                        <option value="Outreach">Outreach</option>
+                    </select>
+                </div>
+                <div class="form-group-crm">
+                    <label for="donation-amount">Amount (ZAR - R)</label>
+                    <input type="number" id="donation-amount" required min="1" placeholder="e.g. 150">
+                </div>
+                <div class="form-group-crm">
+                    <label for="donation-date">Date</label>
+                    <input type="date" id="donation-date" required>
+                </div>
+                <button type="submit" class="btn-crm-submit">Log Transaction</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4c. CREATE EVENT MODAL -->
+    <div class="modal-overlay-crm" id="event-modal">
+        <div class="modal-card-crm">
+            <button class="modal-close-crm" id="event-modal-close">&times;</button>
+            <h3>Create New Event</h3>
+            <form id="event-form">
+                <div class="form-group-crm">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" id="event-title" required placeholder="e.g. Community Family BBQ">
+                </div>
+                <div class="form-group-crm">
+                    <label for="event-category">Category</label>
+                    <select id="event-category">
+                        <option value="community">Community</option>
+                        <option value="worship">Worship</option>
+                        <option value="youth">Youth</option>
+                    </select>
+                </div>
+                <div class="form-group-crm">
+                    <label for="event-date-val">Event Date</label>
+                    <input type="date" id="event-date-val" required>
+                </div>
+                <div class="form-group-crm">
+                    <label for="event-time-val">Event Time</label>
+                    <input type="time" id="event-time-val" required style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,.08); border-radius: var(--border-radius-sm); outline: none;">
+                </div>
+                <div class="form-group-crm">
+                    <label for="event-location">Location</label>
+                    <input type="text" id="event-location" required placeholder="e.g. East Lawn Sanctuary">
+                </div>
+                <button type="submit" class="btn-crm-submit">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4d. CUSTOM ALERTS MODAL -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="modal-icon-success" id="success-modal-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="modal-title">Request Received</h3>
+            <p id="modal-message">Thank you. Your request has been processed successfully.</p>
+            <button class="btn btn-primary" id="modal-ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- 4e. SYNC PROGRESS OVERLAY -->
+    <div class="modal-overlay-crm" id="sync-spinner-overlay">
+        <div class="sync-spinner-box">
+            <div class="spinner"></div>
+            <h3>Syncing to Google Sheets...</h3>
+            <p>Exporting records and updating remote rows</p>
+        </div>
+    </div>
+
+
